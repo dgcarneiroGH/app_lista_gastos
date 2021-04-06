@@ -14,6 +14,7 @@ import GastosPorCategoria from './componentes/GastosPorCategoria';
 import ListaDeGastos from './componentes/ListaDeGastos';
 import EditarGasto from './componentes/EditarGasto';
 import Fondo from './elementos/Fondo';
+import { AuthProvider } from './contextos/AuthContext';
 
 WebFont.load({
   google: {
@@ -28,20 +29,22 @@ const Index = () => {
         <link rel="shortcut icon" href={favicon} type="image/x-icon" />
       </Helmet>
 
-      <BrowserRouter>
-        <Contenedor>
-          <Switch>
-            <Route path="/iniciar-sesion" component={InicioSesion} />
-            <Route path="/crear-cuenta" component={RegistroUsuarios} />
-            <Route path="/categorias" component={GastosPorCategoria} />
-            <Route path="/lista" component={ListaDeGastos} />
-            <Route path="/editar/:id" component={EditarGasto} />
-            <Route path="/" component={App} />
-          </Switch>
-        </Contenedor>
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Contenedor>
+            <Switch>
+              <Route path="/iniciar-sesion" component={InicioSesion} />
+              <Route path="/crear-cuenta" component={RegistroUsuarios} />
+              <Route path="/categorias" component={GastosPorCategoria} />
+              <Route path="/lista" component={ListaDeGastos} />
+              <Route path="/editar/:id" component={EditarGasto} />
+              <Route path="/" component={App} />
+            </Switch>
+          </Contenedor>
+        </BrowserRouter>
+      </AuthProvider>
 
-      <Fondo/>
+      <Fondo />
     </>
   );
 }
